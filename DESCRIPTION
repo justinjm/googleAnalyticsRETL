@@ -1,0 +1,33 @@
+Package: googleAnalyticsRETL
+Type: Package
+Title: What the Package Does (Title Case)
+Version: 0.1.0
+Author: Who wrote it
+Maintainer: The package maintainer <yourself@somewhere.net>
+Description: More about what it does (maybe more than one line)
+    Use four spaces when indenting paragraphs within the Description.
+Depends:
+    R (>= 3.2.0)
+Imports:
+    assertthat (>= 0.2.0),
+    dplyr (>= 0.7.0),
+    googleAuthR (>= 0.5.1),
+    httr (>= 1.3.1),
+    magrittr (>= 1.5),
+    purrr (>= 0.2.2),
+    rlang (>= 0.1.0),
+    tidyr (>= 0.6.3),
+    utils,
+    googleAnalyticsR (>= 0.4.1)
+Suggests:
+    bigQueryR (>= 0.3.1),
+    covr,
+    googleCloudStorageR (>= 0.2.0),
+    httptest,
+    knitr,
+    miniUI (>= 0.1.1),
+    rmarkdown,
+    shiny (>= 0.13.2)
+License: What license is it under?
+Encoding: UTF-8
+LazyData: true
