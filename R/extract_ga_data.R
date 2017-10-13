@@ -1,0 +1,81 @@
+#' Extract GA Data
+#' A function for looping trhough a list of GA Views
+#' to extract custom dimensions implemented across views
+#'
+#' @param ga_ids
+#' @param extract_dates
+#' @param extract_metrics
+#' @param extract_dimensions
+#' @param dim_list_map
+#' @param dim_filter_string
+#' @param outfile_directory
+#'
+#' @return a dataframe object
+extract_ga_data <- function(ga_ids,
+                            extract_dates,
+                            extract_metrics,
+                            extract_dimensions,
+                            dim_list_map,
+                            dim_filter_string,
+                            outfile_directory = NULL,
+                            outfile_dim_colname = NULL) {
+
+  message("[-] starting to get data from all GA view...")
+
+  message("[?] gathering of data from ", length(ga_ids), " GA views...")
+
+  data <- lapply(ga_ids, function(x){
+
+    # Get GA metadata for printing and timezone setting
+    ga_account_info <- ga_account_list() %>%
+      filter(viewId == x)
+
+    ## save GA view metadata for ease of reference
+    view <- ga_view(ga_account_info$accountId,
+                    webPropertyId = ga_account_info$webPropertyId,
+                    profileId = ga_account_info$viewId)
+
+    gaID <- as.character(x)
+
+    extract_dimensions <- c(extract_dimensions, dim_list_map[[gaID]])
+
+    message(sprintf("[?] Fetching GA data from view %s...", x))
+
+    out <- google_analytics_4(x,
+                              date_range = extract_dates,
+                              metrics = extract_metrics,
+                              dimensions = extract_dimensions,
+                              dim_filters = dim_filter_string,
+                              max=-1,
+                              anti_sample = TRUE)
+
+    ## standardise custom dimension name
+    ### if param null
+    if (is.null(outfile_dim_colname)) {
+      ## set colname to "customDimension"
+      out$customDimension <- out[[dim_list_map[[gaID]]]]
+      out[[dim_list_map[[gaID]]]] <- NULL
+    } else {
+      ## anything else, set to param provided
+      ## https://stackoverflow.com/a/30083352/1812363
+      names(out)[names(out) == dim_list_map[[gaID]]] <- outfile_dim_colname
+    }
+
+    message("[?] GA Data from view: ", view$name , " | ", x, "is in Timezone: ", view$timezone)
+
+    ## set out directory
+    if (is.null(outfile_directory)) {
+      out_dir <- ""
+    } else {
+      out_dir <- paste0(outfile_directory, "/")
+    }
+
+    ## order columns and write out to rds object
+    out %>%
+      saveRDS(file = paste0(out_dir, "viewId_", x, ".rds"))
+
+    message("[?] done getting data from GA view: ", view$name , " | ", x)
+  })
+
+  message("[x] done getting data from ", length(ga_ids), " GA views...")
+}
