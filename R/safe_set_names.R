@@ -1,6 +1,7 @@
 #' Safe set names
 #'
 #' Will error if there is a problem setting names, which is better than silently returning NA
+#' Original Author: Mark Edmondson https://github.com/MarkEdmondson1234
 #'
 #' @param data_frame Data.frame to change the names of
 #' @param lookup_names A named vector of the names of old_name = new_name
