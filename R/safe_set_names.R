@@ -5,6 +5,7 @@
 #'
 #' @param data_frame Data.frame to change the names of
 #' @param lookup_names A named vector of the names of old_name = new_name
+#'
 #' @return A character vector of new names, or error if any NA's
 safe_set_names <- function(data_frame, lookup_names){
   old_names <- names(data_frame)

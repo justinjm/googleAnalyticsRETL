@@ -5,7 +5,7 @@ Title: Provide Extract Transform Load (ETL) functionality for Google Analytics d
 Description: This is an R package to help optimize and scale data ETL and 
     Shiny app workflows involving Google Analytics and Google Cloud Platform. 
     It is built on top of the googleAuthRverse packages by 
-    Mark Edmondson <https://github.com/MarkEdmondson1234>
+    Mark Edmondson <https://github.com/MarkEdmondson1234>.
 Authors@R: c(person("Justin", "Marciszewski", email = "justin@harborislandanalytics.com", role = c("aut", "cre")))
 Depends:
     R (>= 3.2.0)

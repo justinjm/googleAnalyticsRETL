@@ -6,6 +6,7 @@
 #' @param image_tag STRING
 #' @param app_directory STRING
 #' @param wait_second INTEGER of seconds to wait before opening the app's url
+#'
 #' @return a dataframe "vm" wtih GCE instance info
 setup_gce_vm <- function(gce_vm_name,
                          gce_vm_temp,
@@ -32,9 +33,9 @@ setup_gce_vm <- function(gce_vm_name,
 
   message(sprintf("[?] Here is the gcloud command to ssh into %s:", gce_vm_name))
   cmd <- paste0("gcloud compute --project \"",
-                gce_project_id,
+                gce_project_id, #' TODO @justinjm - add to function
                 "\" ssh --zone \"",
-                gce_zone,
+                gce_zone, #' TODO @justinjm - add to function
                 "\" \"",
                 gce_vm_name,
                 "\"")

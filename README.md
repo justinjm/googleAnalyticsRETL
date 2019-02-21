@@ -16,7 +16,7 @@ Thank you!
 
 ```r
 install.packages("devtools")
-devtools::install_github("justinjm/googleAnalyticsETL")
+devtools::install_github("justinjm/googleAnalyticsRETL")
 ```
 
 ## Resources
