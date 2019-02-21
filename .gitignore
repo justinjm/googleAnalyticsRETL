@@ -1,5 +1,10 @@
+# History files 
 .Rproj.user
 .Rhistory
 .RData
 .Ruserdata
+# RStudio files 
+.Rproj.user/
+# Example code in package build process
 .httr-oauth
+*-Ex.R
