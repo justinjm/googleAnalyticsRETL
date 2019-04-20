@@ -14,6 +14,8 @@ Imports:
     dplyr (>= 0.7.0),
     googleAuthR (>= 0.7.0),
     googleAnalyticsR,
+    bigQueryR (>= 0.3.1),
+    googleCloudStorageR (>= 0.2.0),
     httr (>= 1.3.1),
     jsonlite (>= 1.5),
     magrittr (>= 1.5),
@@ -24,10 +26,8 @@ Imports:
     tidyr (>= 0.6.3),
     utils
 Suggests:
-    bigQueryR (>= 0.3.1),
     covr,
     ganalytics,
-    googleCloudStorageR (>= 0.2.0),
     httptest (>= 3.2.2),
     knitr,
     miniUI (>= 0.1.1),
