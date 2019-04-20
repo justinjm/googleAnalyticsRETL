@@ -9,7 +9,7 @@
 #'
 #' @return a dataframe "vm" wtih GCE instance info
 setup_gce_vm <- function(gce_vm_name,
-                         gce_vm_temp,
+                         gce_vm_temp=NULL,
                          gce_vm_type,
                          image_tag,
                          app_directory,
