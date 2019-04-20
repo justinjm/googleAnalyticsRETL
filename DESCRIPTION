@@ -34,6 +34,5 @@ Suggests:
     rmarkdown,
     shiny (>= 0.13.2)
 License: MIT + file LICENSE
-Encoding: UTF-8 
 LazyData: TRUE
 RoxygenNote: 6.1.0
