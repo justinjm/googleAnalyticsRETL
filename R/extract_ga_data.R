@@ -14,6 +14,9 @@
 #' @param outfile_tz_col
 #' @param outfile_directory
 #'
+#' @import dplyr
+#' @import assertthat
+#'
 #' @return a dataframe object
 extract_ga_data <- function(ga_ids,
                             extract_dates=NULL,
@@ -25,9 +28,11 @@ extract_ga_data <- function(ga_ids,
                             outfile_tz_col=FALSE,
                             outfile_directory=NULL) {
 
-  message("[-] starting to get data from all GA view...")
+  assert_that(is.numeric(ga_ids))
 
-  message("[?] gathering of data from ", length(ga_ids), " GA views...")
+  myMessage("Starting to get data from all GA views...")
+
+  myMessage("Gathering of data from ", length(ga_ids), " GA views...")
 
   data <- lapply(ga_ids, function(x){
 
@@ -42,45 +47,52 @@ extract_ga_data <- function(ga_ids,
 
     ga_id <- as.character(x)
 
-    extract_dimensions <- c(extract_dimensions, dim_list_map[[ga_id]])
+    ## if dim list map provided, use it
+    ## if not, use same dimensions for all views
+    if(is.null(extract_dimensions)){
+      extract_dimensions <- c(extract_dimensions, dim_list_map[[ga_id]])
 
-    message(sprintf("[?] Fetching GA data from view %s...", x))
+    } else {
+      myMessage("No dim map provided, extract same dimensions for all.")
+    }
 
-    out <- google_analytics_4(viewId = x,
-                              date_range = extract_dates,
-                              metrics = extract_metrics,
-                              dimensions = extract_dimensions,
-                              dim_filters = dim_filter_string,
-                              max=-1,
-                              anti_sample = TRUE)
+    myMessage(sprintf("Fetching GA data from view %s...", x))
+
+    out <- google_analytics(viewId = x,
+                            date_range = extract_dates,
+                            metrics = extract_metrics,
+                            dimensions = extract_dimensions,
+                            dim_filters = dim_filter_string,
+                            max=-1,
+                            anti_sample = TRUE)
     ## print ga view timezone info for ease of inspection during debugging
-    message("[?] GA Data from view: ", view$name , " | ", x, "is in Timezone: ", view$timezone)
+    myMessage("GA Data from view: ", view$name , " | ", x, " is in Timezone: ", view$timezone)
 
-    ## if date column exists,
-    ## set it to the view's timezone
+    ## if date column exists, set it to the view's timezone
     if("date" %in% colnames(out)){
       out$date <- as.Date(x = out$date,
                           format = "%Y %m %d",
                           tz = view$timezone)
     } else {
-      print("[?] No date column.")
+      myMessage("No date column fetched from GA so not adding timezone")
     }
 
     ## if timezone column param set, add it
     if (outfile_tz_col){
-      print("[?] Adding a timezone column...")
+      myMessage("Adding a timezone column...")
       out$timezone <- view$timezone
     }
     else {
-      print("[?] Not adding a timezone column, param not set")
+      myMessage("Not adding a timezone column, param not set")
     }
 
     ## standardise custom dimension name
     ### if param null
     if (is.null(outfile_dim_colname)){
-      ## set colname to "customDimension"
-      out$customDimension <- out[[dim_list_map[[ga_id]]]]
-      out[[dim_list_map[[ga_id]]]] <- NULL
+      # Do nothing
+      # ## set colname to "customDimension"
+      # out$customDimension <- out[[dim_list_map[[ga_id]]]]
+      # out[[dim_list_map[[ga_id]]]] <- NULL
     } else {
       ## anything else, set to param provided
       ## https://stackoverflow.com/a/30083352/1812363
@@ -99,8 +111,8 @@ extract_ga_data <- function(ga_ids,
     out %>%
       saveRDS(file = paste0(out_dir, "viewId_", x, ".rds"))
 
-    message("[?] done getting data from GA view: ", view$name , " | ", x)
+    myMessage("done getting data from GA view: ", view$name , " | ", x)
   })
 
-  message("[x] done getting data from ", length(ga_ids), " GA views...")
+  myMessage("done getting data from ", length(ga_ids), " GA views!")
 }

@@ -1,12 +1,13 @@
 Package: googleAnalyticsRETL
-Type: Package
 Version: 0.0.0.9000
 Title: Provide Extract Transform Load (ETL) functionality for Google Analytics data 
 Description: This is an R package to help optimize and scale data ETL and 
     Shiny app workflows involving Google Analytics and Google Cloud Platform. 
     It is built on top of the googleAuthRverse packages by 
     Mark Edmondson <https://github.com/MarkEdmondson1234>.
-Authors@R: c(person("Justin", "Marciszewski", email = "justin@harborislandanalytics.com", role = c("aut", "cre")))
+Authors@R: c(person("Justin", "Marciszewski", 
+            email = "justin@harborislandanalytics.com", 
+            role = c("aut", "cre")))
 Depends:
     R (>= 3.2.0)
 Imports:
@@ -15,24 +16,12 @@ Imports:
     googleAuthR (>= 0.7.0),
     googleAnalyticsR,
     bigQueryR (>= 0.3.1),
-    googleCloudStorageR (>= 0.2.0),
-    httr (>= 1.3.1),
-    jsonlite (>= 1.5),
-    magrittr (>= 1.5),
-    memoise,
-    methods,
-    purrr (>= 0.2.2),
-    rlang (>= 0.1.0),
-    tidyr (>= 0.6.3),
-    utils
-Suggests:
-    covr,
-    ganalytics,
-    httptest (>= 3.2.2),
+    googleCloudStorageR (>= 0.2.0)
+Suggests: 
     knitr,
-    miniUI (>= 0.1.1),
     rmarkdown,
-    shiny (>= 0.13.2)
+    testthat
 License: MIT + file LICENSE
 LazyData: TRUE
-RoxygenNote: 6.1.0
+RoxygenNote: 6.1.1
+Encoding: UTF-8

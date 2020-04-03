@@ -6,7 +6,7 @@
 A helper function that sets up a GCE VM, waits for a period of time you set
 then opens the shiny app in your browser}
 \usage{
-setup_gce_vm(gce_vm_name, gce_vm_temp, gce_vm_type, image_tag,
+setup_gce_vm(gce_vm_name, gce_vm_temp = NULL, gce_vm_type, image_tag,
   app_directory, wait_seconds)
 }
 \arguments{
