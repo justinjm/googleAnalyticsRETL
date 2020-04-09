@@ -17,6 +17,9 @@
 #' @import dplyr
 #' @import assertthat
 #'
+#' @family extract functions
+#' @export
+#'
 #' @return a dataframe object
 extract_ga_data <- function(ga_ids,
                             extract_dates=NULL,
