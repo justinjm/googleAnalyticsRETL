@@ -6,8 +6,10 @@
 for use in Shiny Apps to preserve against data loss
 and optimize Docker/GCR workflow by not storing data locally}
 \usage{
-load_ga_data(ga_ids, outfile_directory = NULL, create,
-  overwrite = NULL)
+load_ga_data(ga_ids, outfile_directory = NULL, create, overwrite = NULL)
+}
+\arguments{
+\item{overwrite}{}
 }
 \description{
 Load GA Data to BQ

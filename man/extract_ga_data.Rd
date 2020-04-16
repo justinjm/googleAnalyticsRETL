@@ -4,10 +4,17 @@
 \alias{extract_ga_data}
 \title{Extract GA Data}
 \usage{
-extract_ga_data(ga_ids, extract_dates = NULL, extract_metrics = NULL,
-  extract_dimensions = NULL, dim_list_map = NULL,
-  dim_filter_string = NULL, outfile_dim_colname = NULL,
-  outfile_tz_col = FALSE, outfile_directory = NULL)
+extract_ga_data(
+  ga_ids,
+  extract_dates = NULL,
+  extract_metrics = NULL,
+  extract_dimensions = NULL,
+  dim_list_map = NULL,
+  dim_filter_string = NULL,
+  outfile_dim_colname = NULL,
+  outfile_tz_col = FALSE,
+  outfile_directory = NULL
+)
 }
 \arguments{
 \item{outfile_directory}{}

@@ -6,6 +6,8 @@
 #'@param outfile_directory
 #'@param create
 #'@param overwrite
+#'
+#' @export
 load_ga_data <- function(ga_ids,
                          outfile_directory = NULL,
                          create,

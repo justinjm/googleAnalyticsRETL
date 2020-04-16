@@ -15,6 +15,7 @@
 #' @param outfile_directory
 #'
 #' @return a dataframe object
+#' @export
 extract_ga_data <- function(ga_ids,
                             extract_dates=NULL,
                             extract_metrics=NULL,
