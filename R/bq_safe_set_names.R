@@ -6,6 +6,7 @@
 #' @param names list of dataframe column names
 #'
 #' @return list of BQ safe column name
+#' @export
 bq_safe_set_names <- function(names){
   gsub("\\.", "_", make.names(names))
 

@@ -8,6 +8,7 @@
 #' @param wait_second INTEGER of seconds to wait before opening the app's url
 #'
 #' @return a dataframe "vm" wtih GCE instance info
+#' @export
 setup_gce_vm <- function(gce_vm_name,
                          gce_vm_temp=NULL,
                          gce_vm_type,
