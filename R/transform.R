@@ -1,3 +1,19 @@
+#' Set BigQuery Safe Names
+#'
+#' Remove bad characters so colnames are safe for loading into BigQuery
+#' Original Author: Mark Edmondson https://github.com/MarkEdmondson1234
+#'
+#' @param names list of dataframe column names
+#'
+#' @return list of BQ safe column name
+#' 
+#' @export
+bq_safe_set_names <- function(names){
+  gsub("\\.", "_", make.names(names))
+
+}
+
+
 #' Safe set names
 #'
 #' Will error if there is a problem setting names, which is better than silently returning NA
@@ -22,3 +38,5 @@ safe_set_names <- function(data_frame, lookup_names){
   new_names
 
 }
+
+
